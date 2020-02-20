@@ -6,6 +6,15 @@ export function searchPosts(searchTitle) {
     };
   }
 
+  async function getPostsByTitle(req, res) {
+    const db = req.app.get("db");
+    const { title } = req.query;
+  
+    const posts = await db.posts.getPostsByTitle(`${title}%`);
+    res.status(200).json(posts);
+  }
+
+
 
 
 
